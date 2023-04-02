@@ -1,0 +1,50 @@
+<section class="ReactiveForm">
+  <h1 class="center">{{ header }}</h1>
+  <form class="w-50 m-auto my-5" [formGroup]="myForm" (ngSubmit)="submit()">
+    <label for="username">username</label>
+    <input
+      class="form-control"
+      formControlName="username"
+      name="username"
+      type="text"
+      id="username"
+    />
+    <p
+      *ngIf="myForm.get('username')?.touched &&myForm.get('username')?.errors?.['required']"
+    >
+      username is required
+    </p>
+    <label for="email">Email:</label>
+    <input
+      class="form-control"
+      name="email"
+      formControlName="email"
+      type="email"
+      id="email"
+    />
+    <p
+      *ngIf="myForm.get('email')?.touched &&myForm.get('email')?.errors?.['required']"
+    >
+      email is required
+    </p>
+    <p
+      *ngIf="myForm.get('email')?.touched &&myForm.get('email')?.errors?.['email']"
+    >
+      invalid email
+    </p>
+    <label for="password">Password</label>
+    <input
+      class="form-control"
+      name="password"
+      formControlName="password"
+      type="password"
+      id="password"
+    />
+    <p
+      *ngIf="myForm.get('password')?.touched &&myForm.get('password')?.errors?.['required']"
+    >
+      password is required
+    </p>
+    <input type="submit" [disabled]="!myForm.valid" value="login" />
+  </form>
+</section>
